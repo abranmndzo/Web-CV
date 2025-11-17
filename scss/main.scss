@@ -1,0 +1,25 @@
+// Main SCSS File - Import all partials
+// This file compiles into css/styles.css
+
+// 1. Base styles
+@use 'base/reset';
+@use 'base/variables';
+@use 'base/typography';
+@use 'base/base';
+
+// 2. Layout
+@use 'layout/header';
+@use 'layout/hero';
+@use 'layout/sections';
+@use 'layout/footer';
+
+// 3. Components
+@use 'components/navigation';
+@use 'components/cards';
+@use 'components/timeline';
+@use 'components/skills';
+@use 'components/annotations';
+
+// 4. Utilities
+@use 'utilities/mixins';
+@use 'utilities/animations';

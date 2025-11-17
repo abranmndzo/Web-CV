@@ -1,0 +1,50 @@
+// Navigation Component
+// Header navigation menu
+
+.nav-menu {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-lg);
+  
+  @media (max-width: 1024px) {
+    gap: var(--spacing-md);
+  }
+  
+  @media (max-width: 768px) {
+    display: none;
+  }
+  
+  li {
+    a {
+      font-size: var(--font-size-sm);
+      font-weight: var(--font-weight-semibold);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: var(--color-text);
+      padding: var(--spacing-xs) var(--spacing-sm);
+      border-radius: 4px;
+      transition: all var(--transition-base);
+      position: relative;
+      
+      &::after {
+        content: '';
+        position: absolute;
+        bottom: 0;
+        left: 50%;
+        transform: translateX(-50%) scaleX(0);
+        width: 80%;
+        height: 2px;
+        background: var(--color-primary);
+        transition: transform var(--transition-base);
+      }
+      
+      &:hover {
+        color: var(--color-primary);
+        
+        &::after {
+          transform: translateX(-50%) scaleX(1);
+        }
+      }
+    }
+  }
+}

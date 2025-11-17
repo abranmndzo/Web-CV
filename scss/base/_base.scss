@@ -1,0 +1,89 @@
+// Base Styles
+// Global styles and common patterns
+
+body {
+  background-color: var(--color-background);
+  overflow-x: hidden;
+}
+
+// Main content container
+main {
+  position: relative;
+  
+  section {
+    padding: var(--spacing-3xl) var(--spacing-md);
+    
+    @media (max-width: 768px) {
+      padding: var(--spacing-2xl) var(--spacing-md);
+    }
+    
+    @media (max-width: 480px) {
+      padding: var(--spacing-xl) var(--spacing-sm);
+    }
+  }
+}
+
+// Section titles
+.section-title {
+  font-size: var(--font-size-6xl);
+  font-weight: var(--font-weight-extrabold);
+  text-transform: uppercase;
+  letter-spacing: -0.02em;
+  margin-bottom: var(--spacing-2xl);
+  color: var(--color-primary);
+  
+  @media (max-width: 768px) {
+    font-size: var(--font-size-3xl);
+    margin-bottom: var(--spacing-xl);
+  }
+  
+  @media (max-width: 480px) {
+    font-size: var(--font-size-2xl);
+  }
+}
+
+.subsection-title {
+  font-size: var(--font-size-xl);
+  font-weight: var(--font-weight-bold);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-bottom: var(--spacing-lg);
+  color: var(--color-text);
+  text-align: center;
+}
+
+// Container
+.container {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 0 var(--container-padding);
+}
+
+// Highlight color utility
+.highlight {
+  color: var(--color-primary);
+}
+
+// Placeholder for icons/svgs
+.icon-placeholder {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 48px;
+  height: 48px;
+  background: var(--color-background-alt);
+  border-radius: 8px;
+  font-weight: var(--font-weight-bold);
+  font-size: var(--font-size-sm);
+  color: var(--color-text-secondary);
+}
+
+// Logo
+.logo-icon {
+  color: var(--color-text);
+  transition: color var(--transition-base);
+  
+  &:hover {
+    color: var(--color-primary);
+  }
+}

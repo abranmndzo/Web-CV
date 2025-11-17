@@ -1,0 +1,83 @@
+// Annotations Component
+// Handwriting-style annotations and decorative elements
+
+.handwriting-annotation {
+  display: inline-block;
+  position: relative;
+  width: 80px;
+  height: 40px;
+  margin: 0 var(--spacing-sm);
+  
+  @media (max-width: 768px) {
+    width: 60px;
+    height: 30px;
+  }
+  
+  @media (max-width: 480px) {
+    display: none;
+  }
+  
+  svg {
+    width: 100%;
+    height: 100%;
+    opacity: 0.6;
+    
+    path {
+      stroke: var(--color-primary);
+      stroke-width: 2;
+      fill: none;
+    }
+  }
+}
+
+.handwriting-text {
+  position: absolute;
+  font-family: 'Caveat', cursive, var(--font-family);
+  font-size: var(--font-size-lg);
+  color: var(--color-primary);
+  opacity: 0.7;
+  transform: rotate(-5deg);
+  white-space: nowrap;
+  
+  @media (max-width: 768px) {
+    font-size: var(--font-size-base);
+  }
+  
+  &[data-position="top-left"] {
+    top: 0;
+    left: 0;
+  }
+  
+  &[data-position="top-right"] {
+    top: 0;
+    right: 0;
+  }
+  
+  &[data-position="middle-left"] {
+    top: 50%;
+    left: 0;
+    transform: translateY(-50%) rotate(-5deg);
+  }
+  
+  &[data-position="middle-right"] {
+    top: 50%;
+    right: 0;
+    transform: translateY(-50%) rotate(-5deg);
+  }
+  
+  &[data-position="bottom-left"] {
+    bottom: 0;
+    left: 0;
+  }
+  
+  &[data-position="bottom-center"] {
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%) rotate(-5deg);
+  }
+  
+  &[data-position="bottom-right"] {
+    bottom: 0;
+    right: 0;
+  }
+}

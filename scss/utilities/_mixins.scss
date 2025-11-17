@@ -1,0 +1,71 @@
+// Mixins
+// Reusable SCSS mixins for common patterns
+
+// Responsive breakpoints
+@mixin respond-to($breakpoint) {
+  @if $breakpoint == 'sm' {
+    @media (max-width: 640px) {
+      @content;
+    }
+  } @else if $breakpoint == 'md' {
+    @media (max-width: 768px) {
+      @content;
+    }
+  } @else if $breakpoint == 'lg' {
+    @media (max-width: 1024px) {
+      @content;
+    }
+  } @else if $breakpoint == 'xl' {
+    @media (max-width: 1280px) {
+      @content;
+    }
+  }
+}
+
+// Flexbox center
+@mixin flex-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+// Absolute center
+@mixin absolute-center {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+// Truncate text
+@mixin truncate {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+// Line clamp
+@mixin line-clamp($lines) {
+  display: -webkit-box;
+  -webkit-line-clamp: $lines;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+// Card hover effect
+@mixin card-hover {
+  transition: all var(--transition-base);
+  
+  &:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+  }
+}
+
+// Focus visible outline
+@mixin focus-outline {
+  &:focus-visible {
+    outline: 2px solid var(--color-primary);
+    outline-offset: 2px;
+  }
+}

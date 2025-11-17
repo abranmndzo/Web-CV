@@ -1,0 +1,129 @@
+// Timeline Component
+// Experience timeline layout and styles
+
+.timeline {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  position: relative;
+  
+  // Timeline vertical line
+  &::before {
+    content: '';
+    position: absolute;
+    left: 200px;
+    top: 0;
+    bottom: 0;
+    width: 2px;
+    background: var(--color-border);
+    
+    @media (max-width: 768px) {
+      left: 0;
+    }
+  }
+}
+
+.timeline-item {
+  display: grid;
+  grid-template-columns: 200px 1fr;
+  gap: var(--spacing-xl);
+  position: relative;
+  padding-bottom: var(--spacing-2xl);
+  
+  @media (max-width: 768px) {
+    grid-template-columns: 1fr;
+    gap: var(--spacing-md);
+    padding-left: var(--spacing-lg);
+    padding-bottom: var(--spacing-xl);
+  }
+  
+  &:last-child {
+    padding-bottom: 0;
+  }
+  
+  // Timeline dot
+  &::after {
+    content: '';
+    position: absolute;
+    left: 200px;
+    top: 8px;
+    width: 12px;
+    height: 12px;
+    background: var(--color-primary);
+    border-radius: 50%;
+    transform: translateX(-5px);
+    box-shadow: 0 0 0 4px var(--color-background);
+    
+    @media (max-width: 768px) {
+      left: 0;
+      transform: translateX(-5px);
+    }
+  }
+  
+  .timeline-date {
+    display: flex;
+    flex-direction: column;
+    padding-right: var(--spacing-md);
+    
+    @media (max-width: 768px) {
+      padding-right: 0;
+    }
+    
+    .date-range {
+      font-size: var(--font-size-sm);
+      font-weight: var(--font-weight-semibold);
+      color: var(--color-text-secondary);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+  }
+  
+  .timeline-content {
+    .timeline-title {
+      font-size: var(--font-size-xl);
+      font-weight: var(--font-weight-bold);
+      color: var(--color-text);
+      margin-bottom: var(--spacing-xs);
+      
+      @media (max-width: 480px) {
+        font-size: var(--font-size-lg);
+      }
+    }
+    
+    .timeline-company {
+      font-size: var(--font-size-base);
+      font-weight: var(--font-weight-semibold);
+      color: var(--color-primary);
+      margin-bottom: var(--spacing-md);
+    }
+    
+    .timeline-description {
+      list-style: none;
+      
+      li {
+        font-size: var(--font-size-base);
+        line-height: 1.7;
+        color: var(--color-text-secondary);
+        padding-left: var(--spacing-lg);
+        margin-bottom: var(--spacing-sm);
+        position: relative;
+        
+        @media (max-width: 480px) {
+          font-size: var(--font-size-sm);
+          padding-left: var(--spacing-md);
+        }
+        
+        &::before {
+          content: '•';
+          position: absolute;
+          left: 0;
+          color: var(--color-primary);
+          font-weight: var(--font-weight-bold);
+        }
+        
+        &:last-child {
+          margin-bottom: 0;
+        }
+      }
+    }
+  }
+}

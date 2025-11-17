@@ -1,0 +1,116 @@
+// Typography Styles
+// Font family, sizes, weights, and text styles
+
+// ===== TIPOGRAFÍAS PERSONALIZADAS =====
+@font-face {
+    font-family: "Basis Grotesque Arabic Pro";
+    src: url('../assets/fonts/BasisGrotesqueArabicPro-Bold.ttf') format('truetype');
+    font-weight: bold;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: "Basis Grotesque Arabic Pro";
+    src: url('../assets/fonts/BasisGrotesqueArabicPro-Medium.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+body {
+  font-family: var(--font-family);
+  font-size: var(--font-size-base);
+  font-weight: var(--font-weight-regular);
+  color: var(--color-text);
+  line-height: 1.6;
+}
+
+// Headings
+h1, h2, h3, h4, h5, h6 {
+  font-weight: var(--font-weight-bold);
+  line-height: 1.2;
+  color: var(--color-text);
+}
+
+h1 {
+  font-size: var(--font-size-5xl);
+  font-weight: var(--font-weight-extrabold);
+  
+  @media (max-width: 768px) {
+    font-size: var(--font-size-4xl);
+  }
+  
+  @media (max-width: 480px) {
+    font-size: var(--font-size-3xl);
+  }
+}
+
+h2 {
+  font-size: var(--font-size-4xl);
+  font-weight: var(--font-weight-extrabold);
+  
+  @media (max-width: 768px) {
+    font-size: var(--font-size-3xl);
+  }
+  
+  @media (max-width: 480px) {
+    font-size: var(--font-size-2xl);
+  }
+}
+
+h3 {
+  font-size: var(--font-size-2xl);
+  font-weight: var(--font-weight-bold);
+  
+  @media (max-width: 768px) {
+    font-size: var(--font-size-xl);
+  }
+}
+
+h4 {
+  font-size: var(--font-size-xl);
+  font-weight: var(--font-weight-semibold);
+}
+
+// Paragraph styles
+p {
+  margin-bottom: var(--spacing-md);
+  line-height: 1.7;
+  
+  &:last-child {
+    margin-bottom: 0;
+  }
+}
+
+// Links
+a {
+  transition: color var(--transition-base);
+  
+  &:hover {
+    color: var(--color-primary);
+  }
+}
+
+// Strong/Bold
+strong {
+  font-weight: var(--font-weight-bold);
+  color: var(--color-text);
+}
+
+// Small text
+small {
+  font-size: var(--font-size-sm);
+}
+
+// Text utilities
+.text-center {
+  text-align: center;
+}
+
+.text-uppercase {
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.text-highlight {
+  color: var(--color-primary);
+}

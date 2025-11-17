@@ -1,0 +1,115 @@
+// Hero Section Layout
+// Main landing area with typewriter effect
+
+.hero {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  padding: var(--spacing-4xl) var(--spacing-md);
+  margin-top: 80px;
+  
+  @media (max-width: 768px) {
+    padding: var(--spacing-3xl) var(--spacing-md);
+    margin-top: 70px;
+  }
+  
+  @media (max-width: 480px) {
+    padding: var(--spacing-2xl) var(--spacing-sm);
+    margin-top: 60px;
+  }
+  
+  .hero-content {
+    max-width: var(--max-width);
+    margin: 0 auto;
+    width: 100%;
+  }
+  
+  .hero-tagline {
+    margin-bottom: var(--spacing-5xl);
+    
+    @media (max-width: 768px) {
+      margin-bottom: var(--spacing-2xl);
+    }
+    
+    .typewriter-text {
+      font-size: var(--font-size-3xl);
+      font-weight: var(--font-weight-medium);
+      line-height: 1.4;
+      margin-bottom: var(--spacing-md);
+      color: var(--color-text);
+      position: relative;
+      
+      @media (max-width: 1024px) {
+        font-size: var(--font-size-2xl);
+      }
+      
+      @media (max-width: 768px) {
+        font-size: var(--font-size-xl);
+      }
+      
+      @media (max-width: 480px) {
+        font-size: var(--font-size-lg);
+      }
+      
+      .word {
+        display: inline-block;
+        opacity: 0;
+        transform: translateY(20px);
+        margin-right: 0.3em;
+        
+        &.highlight {
+          color: var(--color-primary);
+          font-weight: var(--font-weight-bold);
+        }
+      }
+    }
+  }
+  
+.hero-title {
+  margin-bottom: var(--spacing-2xl);
+  text-align: left; // Asegurar alineación
+  
+  .section-title {
+    // Heredará los estilos de _base.scss
+    // pero sobrescribimos lo necesario para el hero
+    text-align: left;
+    margin-bottom: var(--spacing-sm);
+  }
+  
+  .hero-subtitle { // ← NUEVA CLASE (antes era .title-sub)
+    display: block;
+    font-size: var(--font-size-2xl);
+    font-weight: var(--font-weight-medium);
+    color: var(--color-text);
+    text-transform: uppercase;
+    
+    @media (max-width: 768px) {
+      font-size: var(--font-size-xl);
+    }
+    
+    @media (max-width: 480px) {
+      font-size: var(--font-size-lg);
+    }
+  }
+}
+  
+  .hero-description {
+    max-width: 800px;
+    
+    p {
+      font-size: var(--font-size-lg);
+      line-height: 1.8;
+      color: var(--color-text);
+      margin-bottom: var(--spacing-lg);
+      
+      @media (max-width: 768px) {
+        font-size: var(--font-size-base);
+      }
+      
+      strong {
+        font-weight: var(--font-weight-bold);
+        color: var(--color-text);
+      }
+    }
+  }
+}
