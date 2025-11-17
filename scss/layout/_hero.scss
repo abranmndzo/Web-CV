@@ -26,7 +26,7 @@
   
   .hero-tagline {
     margin-bottom: var(--spacing-3xl);
-    text-align: center;
+    position: relative;
     
     @media (max-width: 768px) {
       margin-bottom: var(--spacing-2xl);
@@ -36,39 +36,45 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      gap: var(--spacing-md);
-      margin-bottom: var(--spacing-lg);
-      flex-wrap: wrap;
+      margin-bottom: var(--spacing-sm);
+      position: relative;
+      min-height: 70px;
+      
+      @media (max-width: 1024px) {
+        min-height: 60px;
+      }
       
       @media (max-width: 768px) {
-        gap: var(--spacing-sm);
-        margin-bottom: var(--spacing-md);
+        margin-bottom: var(--spacing-xs);
+        min-height: auto;
       }
     }
     
     .typewriter-text {
-      font-size: var(--font-size-3xl);
+      font-size: var(--font-size-4xl);
       font-weight: var(--font-weight-medium);
-      line-height: 1.4;
-      color: var(--color-text);
+      line-height: 1.2;
+      color: var(--color-primary);
       position: relative;
       display: inline;
       opacity: 0;
+      text-align: center;
       
       &.typing {
         opacity: 1;
       }
       
       @media (max-width: 1024px) {
-        font-size: var(--font-size-2xl);
+        font-size: var(--font-size-3xl);
       }
       
       @media (max-width: 768px) {
-        font-size: var(--font-size-xl);
+        font-size: var(--font-size-2xl);
+        line-height: 1.3;
       }
       
       @media (max-width: 480px) {
-        font-size: var(--font-size-lg);
+        font-size: var(--font-size-xl);
       }
       
       .word {
@@ -82,7 +88,6 @@
         }
         
         &.highlight {
-          color: var(--color-primary);
           font-weight: var(--font-weight-bold);
         }
       }

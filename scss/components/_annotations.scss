@@ -1,35 +1,23 @@
-// Annotations Component
+// Annotations Component - ACTUALIZADO con breakpoints proporcionales
 // Handwriting-style annotations and decorative elements
 
 .handwriting-annotation {
-  display: inline-flex;
-  align-items: center;
-  position: relative;
-  width: auto;
-  height: auto;
-  margin: 0 var(--spacing-sm);
+  position: absolute;
   opacity: 0;
-  transform: scale(0.9) translateY(5px);
+  transform: scale(0.9);
   transition: opacity 0.6s ease-out, transform 0.6s ease-out;
-  flex-shrink: 0;
+  z-index: 1;
+  pointer-events: none;
   
   &.revealed {
     opacity: 1;
-    transform: scale(1) translateY(0);
-  }
-  
-  @media (max-width: 768px) {
-    margin: 0 var(--spacing-xs);
-  }
-  
-  @media (max-width: 480px) {
-    display: none;
+    transform: scale(1);
   }
   
   img, svg {
     width: auto;
     height: auto;
-    max-height: 70px;
+    max-height: 80px;
     display: block;
     
     @media (max-width: 1024px) {
@@ -41,68 +29,157 @@
     }
   }
   
-  // Si usas texto en lugar de imágenes temporalmente
-  &[data-annotation]::before {
-    content: attr(data-annotation);
-    font-family: 'Caveat', cursive, var(--font-family);
-    font-size: var(--font-size-lg);
-    color: var(--color-text-secondary);
-    white-space: nowrap;
+  // Línea 1: PROJECT MANAGEMENT (arriba izquierda)
+  // Base: right: 450px, top: -30px
+  .typewriter-line:nth-child(1) & {
+    right: calc(50% + 450px);
+    top: -30px;
+    transform: scale(0.9);
+    
+    &.revealed {
+      transform: scale(1);
+    }
+    
+    @media (max-width: 1400px) {
+      right: calc(50% + 430px);  // -50px del base
+      top: -30px;
+    }
+    
+    @media (max-width: 1200px) {
+      right: calc(50% + 430px);  // -100px del base
+      top: -30px;
+    }
+    
+    @media (max-width: 1024px) {
+      right: calc(50% + 300px);  // -170px del base
+      top: -30px;
+    }
+    
+    @media (max-width: 900px) {
+      right: calc(50% + 300px);  // -230px del base
+      top: -30px;
+    }
     
     @media (max-width: 768px) {
-      font-size: var(--font-size-base);
+      display: none;
+    }
+  }
+  
+  // Línea 2: ARQUITECTURA (derecha, centrada verticalmente)
+  // Base: left: 400px, top: 50%
+  .typewriter-line:nth-child(2) & {
+    left: calc(50% + 400px);
+    top: 50%;
+    transform: translateY(-50%) scale(0.9);
+    
+    &.revealed {
+      transform: translateY(-50%) scale(1);
+    }
+    
+    @media (max-width: 1400px) {
+      left: calc(50% + 360px);   // -40px del base
+    }
+    
+    @media (max-width: 1200px) {
+      left: calc(50% + 360px);   // -90px del base
+    }
+    
+    @media (max-width: 1024px) {
+      left: calc(50% + 250px);   // -150px del base
+    }
+    
+    @media (max-width: 900px) {
+      left: calc(50% + 250px);   // -210px del base
+    }
+    
+    @media (max-width: 768px) {
+      display: none;
+    }
+  }
+  
+  // Línea 3: DISEÑO (izquierda, centrada verticalmente)
+  // Base: right: 250px, top: 50%
+  .typewriter-line:nth-child(3) & {
+    right: calc(50% + 250px);
+    top: 50%;
+    transform: translateY(-50%) scale(0.9);
+    
+    &.revealed {
+      transform: translateY(-50%) scale(1);
+    }
+    
+    @media (max-width: 1400px) {
+      right: calc(50% + 220px);  // -30px del base
+    }
+    
+    @media (max-width: 1200px) {
+      right: calc(50% + 220px);  // -60px del base
+    }
+    
+    @media (max-width: 1024px) {
+      right: calc(50% + 160px);  // -90px del base
+    }
+    
+    @media (max-width: 900px) {
+      right: calc(50% + 180px);  // -120px del base
+    }
+    
+    @media (max-width: 768px) {
+      display: none;
+    }
+  }
+  
+  // Línea 4: UX/UI (abajo derecha)
+  // Base: left: 250px, bottom: -50px
+  .typewriter-line:nth-child(4) & {
+    left: calc(50% + 250px);
+    bottom: -50px;
+    transform: scale(0.9);
+    
+    &.revealed {
+      transform: scale(1);
+    }
+    
+    @media (max-width: 1400px) {
+      left: calc(50% + 220px);   // -30px del base
+      bottom: -50px;
+    }
+    
+    @media (max-width: 1200px) {
+      left: calc(50% + 190px);   // -60px del base
+      bottom: -50px;
+    }
+    
+    @media (max-width: 1024px) {
+      left: calc(50% + 160px);   // -90px del base
+      bottom: -50px;
+    }
+    
+    @media (max-width: 900px) {
+      left: calc(50% + 130px);   // -120px del base
+      bottom: -50px;
+    }
+    
+    @media (max-width: 768px) {
+      display: none;
     }
   }
 }
 
-.handwriting-text {
-  position: absolute;
-  font-family: 'Caveat', cursive, var(--font-family);
-  font-size: var(--font-size-lg);
-  color: var(--color-primary);
-  opacity: 0.7;
-  transform: rotate(-5deg);
-  white-space: nowrap;
-  
-  @media (max-width: 768px) {
-    font-size: var(--font-size-base);
-  }
-  
-  &[data-position="top-left"] {
-    top: 0;
-    left: 0;
-  }
-  
-  &[data-position="top-right"] {
-    top: 0;
-    right: 0;
-  }
-  
-  &[data-position="middle-left"] {
-    top: 50%;
-    left: 0;
-    transform: translateY(-50%) rotate(-5deg);
-  }
-  
-  &[data-position="middle-right"] {
-    top: 50%;
-    right: 0;
-    transform: translateY(-50%) rotate(-5deg);
-  }
-  
-  &[data-position="bottom-left"] {
-    bottom: 0;
-    left: 0;
-  }
-  
-  &[data-position="bottom-center"] {
-    bottom: 0;
-    left: 50%;
-    transform: translateX(-50%) rotate(-5deg);
-  }
-  
-  &[data-position="bottom-right"] {
-    bottom: 0;
-    right: 0;
-  }
-}
+// TABLA DE REFERENCIA DE AJUSTES:
+//
+// Línea 1 (PROJECT MANAGEMENT):
+// Base: 450px        | 1400px: 400px (-50)  | 1200px: 350px (-100) | 1024px: 280px (-170) | 900px: 220px (-230)
+// Vertical: -30px (constante en todos los breakpoints)
+//
+// Línea 2 (ARQUITECTURA):
+// Base: 400px        | 1400px: 360px (-40)  | 1200px: 310px (-90)  | 1024px: 250px (-150) | 900px: 190px (-210)
+// Vertical: 50% centrado (constante)
+//
+// Línea 3 (DISEÑO):
+// Base: 250px        | 1400px: 220px (-30)  | 1200px: 190px (-60)  | 1024px: 160px (-90)  | 900px: 130px (-120)
+// Vertical: 50% centrado (constante)
+//
+// Línea 4 (UX/UI):
+// Base: 250px        | 1400px: 220px (-30)  | 1200px: 190px (-60)  | 1024px: 160px (-90)  | 900px: 130px (-120)
+// Vertical: -50px (constante en todos los breakpoints)
