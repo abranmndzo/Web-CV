@@ -353,20 +353,39 @@ main section {
   width: 100%;
 }
 .hero .hero-tagline {
-  margin-bottom: var(--spacing-5xl);
+  margin-bottom: var(--spacing-3xl);
+  text-align: center;
 }
 @media (max-width: 768px) {
   .hero .hero-tagline {
     margin-bottom: var(--spacing-2xl);
   }
 }
+.hero .hero-tagline .typewriter-line {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--spacing-md);
+  margin-bottom: var(--spacing-lg);
+  flex-wrap: wrap;
+}
+@media (max-width: 768px) {
+  .hero .hero-tagline .typewriter-line {
+    gap: var(--spacing-sm);
+    margin-bottom: var(--spacing-md);
+  }
+}
 .hero .hero-tagline .typewriter-text {
   font-size: var(--font-size-3xl);
   font-weight: var(--font-weight-medium);
   line-height: 1.4;
-  margin-bottom: var(--spacing-md);
   color: var(--color-text);
   position: relative;
+  display: inline;
+  opacity: 0;
+}
+.hero .hero-tagline .typewriter-text.typing {
+  opacity: 1;
 }
 @media (max-width: 1024px) {
   .hero .hero-tagline .typewriter-text {
@@ -386,8 +405,11 @@ main section {
 .hero .hero-tagline .typewriter-text .word {
   display: inline-block;
   opacity: 0;
-  transform: translateY(20px);
+  transform: translateY(10px);
   margin-right: 0.3em;
+}
+.hero .hero-tagline .typewriter-text .word.show {
+  animation: fadeIn 0.4s ease forwards;
 }
 .hero .hero-tagline .typewriter-text .word.highlight {
   color: var(--color-primary);
@@ -400,6 +422,7 @@ main section {
 .hero .hero-title .section-title {
   text-align: left;
   margin-bottom: var(--spacing-sm);
+  display: block;
 }
 .hero .hero-title .hero-subtitle {
   display: block;
@@ -420,6 +443,7 @@ main section {
 }
 .hero .hero-description {
   max-width: 800px;
+  text-align: left;
 }
 .hero .hero-description p {
   font-size: var(--font-size-lg);
@@ -1024,16 +1048,24 @@ main section {
 }
 
 .handwriting-annotation {
-  display: inline-block;
+  display: inline-flex;
+  align-items: center;
   position: relative;
-  width: 80px;
-  height: 40px;
+  width: auto;
+  height: auto;
   margin: 0 var(--spacing-sm);
+  opacity: 0;
+  transform: scale(0.9) translateY(5px);
+  transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+  flex-shrink: 0;
+}
+.handwriting-annotation.revealed {
+  opacity: 1;
+  transform: scale(1) translateY(0);
 }
 @media (max-width: 768px) {
   .handwriting-annotation {
-    width: 60px;
-    height: 30px;
+    margin: 0 var(--spacing-xs);
   }
 }
 @media (max-width: 480px) {
@@ -1041,15 +1073,33 @@ main section {
     display: none;
   }
 }
-.handwriting-annotation svg {
-  width: 100%;
-  height: 100%;
-  opacity: 0.6;
+.handwriting-annotation img, .handwriting-annotation svg {
+  width: auto;
+  height: auto;
+  max-height: 70px;
+  display: block;
 }
-.handwriting-annotation svg path {
-  stroke: var(--color-primary);
-  stroke-width: 2;
-  fill: none;
+@media (max-width: 1024px) {
+  .handwriting-annotation img, .handwriting-annotation svg {
+    max-height: 60px;
+  }
+}
+@media (max-width: 768px) {
+  .handwriting-annotation img, .handwriting-annotation svg {
+    max-height: 50px;
+  }
+}
+.handwriting-annotation[data-annotation]::before {
+  content: attr(data-annotation);
+  font-family: "Caveat", cursive, var(--font-family);
+  font-size: var(--font-size-lg);
+  color: var(--color-text-secondary);
+  white-space: nowrap;
+}
+@media (max-width: 768px) {
+  .handwriting-annotation[data-annotation]::before {
+    font-size: var(--font-size-base);
+  }
 }
 
 .handwriting-text {
@@ -1108,12 +1158,24 @@ main section {
     transform: translateY(0);
   }
 }
-@keyframes fadeIn {
+@keyframes fadeInScale {
   from {
     opacity: 0;
+    transform: scale(0.8) rotate(-5deg);
   }
   to {
     opacity: 1;
+    transform: scale(1) rotate(-5deg);
+  }
+}
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
   }
 }
 @keyframes slideInLeft {

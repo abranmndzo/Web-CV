@@ -2,30 +2,55 @@
 // Handwriting-style annotations and decorative elements
 
 .handwriting-annotation {
-  display: inline-block;
+  display: inline-flex;
+  align-items: center;
   position: relative;
-  width: 80px;
-  height: 40px;
+  width: auto;
+  height: auto;
   margin: 0 var(--spacing-sm);
+  opacity: 0;
+  transform: scale(0.9) translateY(5px);
+  transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+  flex-shrink: 0;
+  
+  &.revealed {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
   
   @media (max-width: 768px) {
-    width: 60px;
-    height: 30px;
+    margin: 0 var(--spacing-xs);
   }
   
   @media (max-width: 480px) {
     display: none;
   }
   
-  svg {
-    width: 100%;
-    height: 100%;
-    opacity: 0.6;
+  img, svg {
+    width: auto;
+    height: auto;
+    max-height: 70px;
+    display: block;
     
-    path {
-      stroke: var(--color-primary);
-      stroke-width: 2;
-      fill: none;
+    @media (max-width: 1024px) {
+      max-height: 60px;
+    }
+    
+    @media (max-width: 768px) {
+      max-height: 50px;
+    }
+  }
+  
+  // Si usas texto en lugar de imágenes temporalmente
+  &[data-annotation]::before {
+    content: attr(data-annotation);
+    font-family: 'Caveat', cursive, var(--font-family);
+    font-size: var(--font-size-lg);
+    color: var(--color-text-secondary);
+    white-space: nowrap;
+    
+    @media (max-width: 768px) {
+      font-size: var(--font-size-base);
     }
   }
 }

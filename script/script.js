@@ -3,17 +3,22 @@
 
 // Typewriter Effect Class
 class TypewriterEffect {
-  constructor(element, delay = 100, lineDelay = 800) {
+  constructor(element, delay = 50, lineDelay = 400) {
     this.element = element;
     this.delay = delay;
     this.lineDelay = lineDelay;
     this.words = element.querySelectorAll('.word');
     this.currentWordIndex = 0;
+    this.onComplete = null; // Callback cuando termina la línea
   }
 
-  async start(startDelay = 500) {
+  async start(startDelay = 300) {
     await this.wait(startDelay);
     await this.animateWords();
+    // Ejecutar callback si existe
+    if (this.onComplete) {
+      this.onComplete();
+    }
   }
 
   async animateWords() {
@@ -25,13 +30,18 @@ class TypewriterEffect {
 
   revealWord(word) {
     return new Promise((resolve) => {
-      word.style.animation = 'fadeInUp 0.6s ease-out forwards';
-      setTimeout(resolve, 600);
+      word.style.animation = 'fadeInUp 0.4s ease-out forwards';
+      setTimeout(resolve, 400);
     });
   }
 
   wait(ms) {
     return new Promise((resolve) => setTimeout(resolve, ms));
+  }
+  
+  // Método para agregar callback
+  setOnComplete(callback) {
+    this.onComplete = callback;
   }
 }
 
@@ -44,20 +54,66 @@ document.addEventListener('DOMContentLoaded', () => {
 
 // Initialize Typewriter Effect
 function initTypewriter() {
-  const typewriterElements = document.querySelectorAll('.typewriter-text');
+  const lines = document.querySelectorAll('.typewriter-text');
+  const annotations = document.querySelectorAll('.handwriting-annotation');
   
-  let totalDelay = 500; // Initial delay before starting
+  // Configuración de tiempos (basado en tu referencia)
+  const config = {
+    delayBeforeStart: 500,
+    delayBetweenWords: 150,
+    delayBetweenLines: 400,
+    highlightWords: ['estrategia', 'funcionales', 'visual', 'mercado']
+  };
+  
+  let currentDelay = config.delayBeforeStart;
 
-  typewriterElements.forEach((element, index) => {
-    const typewriter = new TypewriterEffect(element, 100, 800);
+  lines.forEach((line, lineIndex) => {
+    const text = line.getAttribute('data-text');
+    const words = text.split(' ');
     
-    setTimeout(() => {
-      typewriter.start(0);
-    }, totalDelay);
+    // Limpiar contenido y crear spans para cada palabra
+    line.innerHTML = '';
+    words.forEach((word, wordIndex) => {
+      const span = document.createElement('span');
+      span.className = 'word';
+      
+      // Verificar si la palabra debe estar destacada
+      const cleanWord = word.toLowerCase().replace(/[.,]/g, '');
+      if (config.highlightWords.includes(cleanWord)) {
+        span.classList.add('highlight');
+      }
+      
+      span.textContent = word;
+      line.appendChild(span);
+      
+      // Añadir espacio excepto después de la última palabra
+      if (wordIndex < words.length - 1) {
+        line.appendChild(document.createTextNode(' '));
+      }
+    });
 
-    // Calculate delay for next line
-    const wordCount = element.querySelectorAll('.word').length;
-    totalDelay += (wordCount * 100) + 800; // word animations + line delay
+    // Programar la aparición de la línea
+    setTimeout(() => {
+      line.classList.add('typing');
+      
+      // Animar cada palabra
+      const wordSpans = line.querySelectorAll('.word');
+      wordSpans.forEach((span, wordIndex) => {
+        setTimeout(() => {
+          span.classList.add('show');
+        }, wordIndex * config.delayBetweenWords);
+      });
+
+      // Mostrar anotación correspondiente después de completar la línea
+      if (annotations[lineIndex]) {
+        setTimeout(() => {
+          annotations[lineIndex].classList.add('revealed');
+        }, (wordSpans.length * config.delayBetweenWords) + 200);
+      }
+    }, currentDelay);
+
+    // Calcular delay para la siguiente línea
+    currentDelay += (words.length * config.delayBetweenWords) + config.delayBetweenLines;
   });
 }
 

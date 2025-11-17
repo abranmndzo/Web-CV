@@ -25,19 +25,39 @@
   }
   
   .hero-tagline {
-    margin-bottom: var(--spacing-5xl);
+    margin-bottom: var(--spacing-3xl);
+    text-align: center;
     
     @media (max-width: 768px) {
       margin-bottom: var(--spacing-2xl);
+    }
+    
+    .typewriter-line {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: var(--spacing-md);
+      margin-bottom: var(--spacing-lg);
+      flex-wrap: wrap;
+      
+      @media (max-width: 768px) {
+        gap: var(--spacing-sm);
+        margin-bottom: var(--spacing-md);
+      }
     }
     
     .typewriter-text {
       font-size: var(--font-size-3xl);
       font-weight: var(--font-weight-medium);
       line-height: 1.4;
-      margin-bottom: var(--spacing-md);
       color: var(--color-text);
       position: relative;
+      display: inline;
+      opacity: 0;
+      
+      &.typing {
+        opacity: 1;
+      }
       
       @media (max-width: 1024px) {
         font-size: var(--font-size-2xl);
@@ -54,8 +74,12 @@
       .word {
         display: inline-block;
         opacity: 0;
-        transform: translateY(20px);
+        transform: translateY(10px);
         margin-right: 0.3em;
+        
+        &.show {
+          animation: fadeIn 0.4s ease forwards;
+        }
         
         &.highlight {
           color: var(--color-primary);
@@ -65,36 +89,36 @@
     }
   }
   
-.hero-title {
-  margin-bottom: var(--spacing-2xl);
-  text-align: left; // Asegurar alineación
-  
-  .section-title {
-    // Heredará los estilos de _base.scss
-    // pero sobrescribimos lo necesario para el hero
+  .hero-title {
+    margin-bottom: var(--spacing-2xl);
     text-align: left;
-    margin-bottom: var(--spacing-sm);
-  }
-  
-  .hero-subtitle { // ← NUEVA CLASE (antes era .title-sub)
-    display: block;
-    font-size: var(--font-size-2xl);
-    font-weight: var(--font-weight-medium);
-    color: var(--color-text);
-    text-transform: uppercase;
     
-    @media (max-width: 768px) {
-      font-size: var(--font-size-xl);
+    .section-title {
+      text-align: left;
+      margin-bottom: var(--spacing-sm);
+      display: block;
     }
     
-    @media (max-width: 480px) {
-      font-size: var(--font-size-lg);
+    .hero-subtitle {
+      display: block;
+      font-size: var(--font-size-2xl);
+      font-weight: var(--font-weight-medium);
+      color: var(--color-text);
+      text-transform: uppercase;
+      
+      @media (max-width: 768px) {
+        font-size: var(--font-size-xl);
+      }
+      
+      @media (max-width: 480px) {
+        font-size: var(--font-size-lg);
+      }
     }
   }
-}
   
   .hero-description {
     max-width: 800px;
+    text-align: left;
     
     p {
       font-size: var(--font-size-lg);
