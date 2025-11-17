@@ -62,7 +62,7 @@ function initTypewriter() {
     delayBeforeStart: 500,
     delayBetweenWords: 150,
     delayBetweenLines: 400,
-    highlightWords: ['estrategia', 'funcionales', 'visual', 'mercado']
+    highlightWords: ['estrategia', 'sistemas', 'valor', 'cliente']
   };
   
   let currentDelay = config.delayBeforeStart;
