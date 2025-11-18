@@ -470,6 +470,7 @@ main section {
 .help-section {
   position: relative;
   background: var(--color-background);
+  padding: var(--spacing-xs) var(--spacing-md);
 }
 .help-section .help-grid {
   display: grid;
