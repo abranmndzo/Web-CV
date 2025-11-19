@@ -1136,7 +1136,7 @@ main section {
 }
 @media (max-width: 480px) {
   .language-item .language-code {
-    font-size: var(--font-size-3xl);
+    font-size: var(--font-size-5xl);
   }
 }
 .language-item .language-name {
