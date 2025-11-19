@@ -96,3 +96,34 @@ main {
     color: var(--color-primary);
   }
 }
+
+// Custom Cursor
+.custom-cursor {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: #FF5722; // Negro para el efecto difference
+  position: fixed;
+  pointer-events: none;
+  z-index: 9999;
+  mix-blend-mode: multiply;
+  transition: transform 0.15s ease, opacity 0.15s ease;
+  transform: translate(-50%, -50%);
+  opacity: 0;
+  
+  &.active {
+    opacity: 1;
+  }
+  
+  &.hover {
+    transform: translate(-50%, -50%) scale(1.5);
+  }
+}
+
+body {
+  cursor: none;
+}
+
+a, button, .skill-item, .help-card {
+  cursor: none;
+}

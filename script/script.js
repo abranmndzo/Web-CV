@@ -38,7 +38,7 @@ class TypewriterEffect {
   wait(ms) {
     return new Promise((resolve) => setTimeout(resolve, ms));
   }
-  
+
   // Método para agregar callback
   setOnComplete(callback) {
     this.onComplete = callback;
@@ -47,6 +47,7 @@ class TypewriterEffect {
 
 // Initialize typewriter effects on page load
 document.addEventListener('DOMContentLoaded', () => {
+  initCustomCursor();
   initTypewriter();
   initScrollReveal();
   initSmoothScroll();
@@ -57,7 +58,7 @@ document.addEventListener('DOMContentLoaded', () => {
 function initTypewriter() {
   const lines = document.querySelectorAll('.typewriter-text');
   const annotations = document.querySelectorAll('.handwriting-annotation');
-  
+
   // Configuración de tiempos (basado en tu referencia)
   const config = {
     delayBeforeStart: 500,
@@ -65,28 +66,28 @@ function initTypewriter() {
     delayBetweenLines: 400,
     highlightWords: ['estrategia', 'sistemas', 'valor', 'cliente']
   };
-  
+
   let currentDelay = config.delayBeforeStart;
 
   lines.forEach((line, lineIndex) => {
     const text = line.getAttribute('data-text');
     const words = text.split(' ');
-    
+
     // Limpiar contenido y crear spans para cada palabra
     line.innerHTML = '';
     words.forEach((word, wordIndex) => {
       const span = document.createElement('span');
       span.className = 'word';
-      
+
       // Verificar si la palabra debe estar destacada
       const cleanWord = word.toLowerCase().replace(/[.,]/g, '');
       if (config.highlightWords.includes(cleanWord)) {
         span.classList.add('highlight');
       }
-      
+
       span.textContent = word;
       line.appendChild(span);
-      
+
       // Añadir espacio excepto después de la última palabra
       if (wordIndex < words.length - 1) {
         line.appendChild(document.createTextNode(' '));
@@ -96,7 +97,7 @@ function initTypewriter() {
     // Programar la aparición de la línea
     setTimeout(() => {
       line.classList.add('typing');
-      
+
       // Animar cada palabra
       const wordSpans = line.querySelectorAll('.word');
       wordSpans.forEach((span, wordIndex) => {
@@ -127,12 +128,12 @@ class ScrollReveal {
       threshold: 0.15,
       rootMargin: '0px'
     };
-    
+
     this.observer = new IntersectionObserver(
       this.handleIntersection.bind(this),
       this.observerOptions
     );
-    
+
     this.init();
   }
 
@@ -179,14 +180,14 @@ function initScrollReveal() {
 // Smooth Scroll for Navigation Links
 function initSmoothScroll() {
   const navLinks = document.querySelectorAll('.nav-menu a[href^="#"]');
-  
+
   navLinks.forEach((link) => {
     link.addEventListener('click', (e) => {
       e.preventDefault();
-      
+
       const targetId = link.getAttribute('href');
       const targetSection = document.querySelector(targetId);
-      
+
       if (targetSection) {
         const headerOffset = 80;
         const elementPosition = targetSection.getBoundingClientRect().top;
@@ -208,11 +209,11 @@ function initNavActiveState() {
 
   window.addEventListener('scroll', () => {
     let current = '';
-    
+
     sections.forEach((section) => {
       const sectionTop = section.offsetTop;
       const sectionHeight = section.clientHeight;
-      
+
       if (window.pageYOffset >= sectionTop - 100) {
         current = section.getAttribute('id');
       }
@@ -233,23 +234,23 @@ function initMobileMenu() {
   const navMenu = document.querySelector('.nav-menu');
   const navOverlay = document.querySelector('.nav-overlay');
   const navLinks = document.querySelectorAll('.nav-menu a');
-  
+
   if (!hamburger || !navMenu || !navOverlay) return;
-  
+
   // Toggle menu
   hamburger.addEventListener('click', () => {
     hamburger.classList.toggle('active');
     navMenu.classList.toggle('active');
     navOverlay.classList.toggle('active');
-    
+
     // Prevent body scroll when menu is open
     document.body.style.overflow = hamburger.classList.contains('active') ? 'hidden' : '';
-    
+
     // Update aria-expanded
     const isExpanded = hamburger.classList.contains('active');
     hamburger.setAttribute('aria-expanded', isExpanded);
   });
-  
+
   // Close menu when clicking overlay
   navOverlay.addEventListener('click', () => {
     hamburger.classList.remove('active');
@@ -258,7 +259,7 @@ function initMobileMenu() {
     document.body.style.overflow = '';
     hamburger.setAttribute('aria-expanded', 'false');
   });
-  
+
   // Close menu when clicking a link
   navLinks.forEach(link => {
     link.addEventListener('click', () => {
@@ -269,7 +270,7 @@ function initMobileMenu() {
       hamburger.setAttribute('aria-expanded', 'false');
     });
   });
-  
+
   // Close menu on escape key
   document.addEventListener('keydown', (e) => {
     if (e.key === 'Escape' && navMenu.classList.contains('active')) {
@@ -293,4 +294,32 @@ if (typeof module !== 'undefined' && module.exports) {
     TypewriterEffect,
     ScrollReveal
   };
+}
+
+// Custom Cursor
+function initCustomCursor() {
+  const cursor = document.querySelector('.custom-cursor');
+  
+  document.addEventListener('mousemove', (e) => {
+    cursor.style.left = e.clientX + 'px';
+    cursor.style.top = e.clientY + 'px';
+    cursor.classList.add('active');
+  });
+  
+  document.addEventListener('mouseleave', () => {
+    cursor.classList.remove('active');
+  });
+  
+  // Hover en elementos interactivos
+  const hoverElements = document.querySelectorAll('a, button, .skill-item, .help-card');
+  
+  hoverElements.forEach(element => {
+    element.addEventListener('mouseenter', () => {
+      cursor.classList.add('hover');
+    });
+    
+    element.addEventListener('mouseleave', () => {
+      cursor.classList.remove('hover');
+    });
+  });
 }

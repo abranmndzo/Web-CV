@@ -299,6 +299,34 @@ main section {
   color: var(--color-primary);
 }
 
+.custom-cursor {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: #FF5722;
+  position: fixed;
+  pointer-events: none;
+  z-index: 9999;
+  mix-blend-mode: multiply;
+  transition: transform 0.15s ease, opacity 0.15s ease;
+  transform: translate(-50%, -50%);
+  opacity: 0;
+}
+.custom-cursor.active {
+  opacity: 1;
+}
+.custom-cursor.hover {
+  transform: translate(-50%, -50%) scale(1.5);
+}
+
+body {
+  cursor: none;
+}
+
+a, button, .skill-item, .help-card {
+  cursor: none;
+}
+
 .header {
   position: fixed;
   top: 0;
