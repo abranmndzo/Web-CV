@@ -33,12 +33,12 @@ main {
   color: var(--color-primary);
   
   @media (max-width: 768px) {
-    font-size: var(--font-size-3xl);
+    font-size: var(--font-size-5xl);
     margin-bottom: var(--spacing-xl);
   }
   
   @media (max-width: 480px) {
-    font-size: var(--font-size-2xl);
+    font-size: var(--font-size-4xl);
   }
 }
 
@@ -50,6 +50,15 @@ main {
   margin-bottom: var(--spacing-lg);
   color: var(--color-text);
   text-align: center;
+
+    @media (max-width: 768px) {
+    font-size: var(--font-size-3xl);
+    margin-bottom: var(--spacing-xl);
+  }
+  
+  @media (max-width: 480px) {
+    font-size: var(--font-size-3xl);
+  }
 }
 
 // Container

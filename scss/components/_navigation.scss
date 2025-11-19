@@ -1,6 +1,46 @@
 // Navigation Component
 // Header navigation menu
 
+// Hamburger Button
+.hamburger {
+  display: none;
+  flex-direction: column;
+  gap: 6px;
+  width: 32px;
+  height: 32px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 4px;
+  z-index: 1001;
+  
+  @media (max-width: 768px) {
+    display: flex;
+  }
+  
+  .hamburger-line {
+    width: 100%;
+    height: 2px;
+    background: var(--color-text);
+    transition: all var(--transition-base);
+    border-radius: 2px;
+  }
+  
+  &.active {
+    .hamburger-line:nth-child(1) {
+      transform: rotate(45deg) translate(7px, 7px);
+    }
+    
+    .hamburger-line:nth-child(2) {
+      opacity: 0;
+    }
+    
+    .hamburger-line:nth-child(3) {
+      transform: rotate(-45deg) translate(7px, -7px);
+    }
+  }
+}
+
 .nav-menu {
   display: flex;
   align-items: center;
@@ -11,10 +51,31 @@
   }
   
   @media (max-width: 768px) {
-    display: none;
+    position: fixed;
+    top: 0;
+    right: -100%;
+    width: 280px;
+    height: 100vh;
+    background: var(--color-background);
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    gap: var(--spacing-xl);
+    padding: var(--spacing-2xl);
+    box-shadow: -4px 0 24px rgba(0, 0, 0, 0.1);
+    transition: right var(--transition-base);
+    z-index: 1000;
+    
+    &.active {
+      right: 0;
+    }
   }
   
   li {
+    @media (max-width: 768px) {
+      width: 100%;
+    }
+    
     a {
       font-size: var(--font-size-sm);
       font-weight: var(--font-weight-semibold);
@@ -26,6 +87,13 @@
       transition: all var(--transition-base);
       position: relative;
       
+      @media (max-width: 768px) {
+        display: block;
+        font-size: var(--font-size-lg);
+        padding: var(--spacing-sm);
+        width: 100%;
+      }
+      
       &::after {
         content: '';
         position: absolute;
@@ -36,6 +104,12 @@
         height: 2px;
         background: var(--color-primary);
         transition: transform var(--transition-base);
+        
+        @media (max-width: 768px) {
+          left: 0;
+          transform: scaleX(0);
+          transform-origin: left;
+        }
       }
       
       &:hover {
@@ -43,8 +117,36 @@
         
         &::after {
           transform: translateX(-50%) scaleX(1);
+          
+          @media (max-width: 768px) {
+            transform: scaleX(1);
+          }
         }
       }
+    }
+  }
+}
+
+// Overlay cuando el menú está abierto
+.nav-overlay {
+  display: none;
+  
+  @media (max-width: 768px) {
+    display: block;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    opacity: 0;
+    visibility: hidden;
+    transition: all var(--transition-base);
+    z-index: 999;
+    
+    &.active {
+      opacity: 1;
+      visibility: visible;
     }
   }
 }
