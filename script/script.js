@@ -169,7 +169,7 @@ function initScrollReveal() {
     elements.forEach((element, index) => {
       element.classList.add('scroll-reveal');
       // Add stagger delay
-      element.style.transitionDelay = `${index * 0.1}s`;
+      element.style.transitionDelay = `${index * 0.07}s`;
     });
   });
 

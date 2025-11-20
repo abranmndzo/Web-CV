@@ -431,6 +431,7 @@ a, button, .skill-item, .help-card {
 }
 .hero .hero-tagline .typewriter-text.typing {
   opacity: 1;
+  margin-bottom: 0%;
 }
 @media (max-width: 1024px) {
   .hero .hero-tagline .typewriter-text {
@@ -1537,7 +1538,7 @@ a, button, .skill-item, .help-card {
 }
 .typewriter-line:nth-child(4) .handwriting-annotation {
   left: calc(50% + 250px);
-  bottom: -50px;
+  bottom: -60px;
   transform: scale(0.9);
 }
 .typewriter-line:nth-child(4) .handwriting-annotation.revealed {
@@ -1546,13 +1547,13 @@ a, button, .skill-item, .help-card {
 @media (max-width: 1400px) {
   .typewriter-line:nth-child(4) .handwriting-annotation {
     left: calc(50% + 220px);
-    bottom: -50px;
+    bottom: -60px;
   }
 }
 @media (max-width: 1200px) {
   .typewriter-line:nth-child(4) .handwriting-annotation {
     left: calc(50% + 190px);
-    bottom: -50px;
+    bottom: -60px;
   }
 }
 @media (max-width: 1024px) {
@@ -1722,7 +1723,7 @@ a, button, .skill-item, .help-card {
 .scroll-reveal {
   opacity: 0;
   transform: translateY(30px);
-  transition: all 0.8s ease-out;
+  transition: all 0.6s ease-out;
 }
 .scroll-reveal.revealed {
   opacity: 1;
