@@ -161,7 +161,17 @@ function initScrollReveal() {
     '.timeline-item',
     '.education-item',
     '.skill-item',
-    '.language-item'
+    '.language-item',
+    '.portfolio-card',
+    '.problem-card',
+    '.root-cause-card',
+    '.principle-item',
+    '.stack-card',
+    '.component-card',
+    '.phase-card',
+    '.result-metric',
+    '.roi-card',
+    '.lesson-card'
   ];
 
   revealElements.forEach((selector) => {
@@ -179,7 +189,7 @@ function initScrollReveal() {
 
 // Smooth Scroll for Navigation Links
 function initSmoothScroll() {
-  const navLinks = document.querySelectorAll('.nav-menu a[href^="#"]');
+  const navLinks = document.querySelectorAll('.nav-menu a[href^="#"], .project-nav a[href^="#"]');
 
   navLinks.forEach((link) => {
     link.addEventListener('click', (e) => {
@@ -189,7 +199,7 @@ function initSmoothScroll() {
       const targetSection = document.querySelector(targetId);
 
       if (targetSection) {
-        const headerOffset = 80;
+        const headerOffset = 120; // account for header + project-nav
         const elementPosition = targetSection.getBoundingClientRect().top;
         const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
 
@@ -197,6 +207,34 @@ function initSmoothScroll() {
           top: offsetPosition,
           behavior: 'smooth'
         });
+      }
+    });
+  });
+
+  // Project nav active state on scroll
+  initProjectNavActiveState();
+}
+
+// Project page in-page navigation active state
+function initProjectNavActiveState() {
+  const projectNavLinks = document.querySelectorAll('.project-nav a[href^="#"]');
+  if (projectNavLinks.length === 0) return;
+
+  window.addEventListener('scroll', () => {
+    let current = '';
+    const sections = document.querySelectorAll('.project-section[id]');
+
+    sections.forEach((section) => {
+      const sectionTop = section.offsetTop;
+      if (window.pageYOffset >= sectionTop - 150) {
+        current = section.getAttribute('id');
+      }
+    });
+
+    projectNavLinks.forEach((link) => {
+      link.classList.remove('active');
+      if (link.getAttribute('href') === `#${current}`) {
+        link.classList.add('active');
       }
     });
   });
